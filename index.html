@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAYMENT BARZ MURPHY </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #d32f2f;
+            --dark-red: #b71c1c;
+            --light-red: #f44336;
+            --accent-red: #ff5252;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #424242;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--dark-red), var(--primary-red));
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            color: var(--white);
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            position: relative;
+        }
+        
+        .whatsapp-channel {
+            background-color: var(--white);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 12px;
+            text-align: center;
+            border-left: 5px solid #25D366;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .whatsapp-channel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(37, 211, 102, 0.05), transparent);
+        }
+        
+        .whatsapp-channel a {
+            color: #25D366;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+        }
+        
+        .whatsapp-channel a:hover {
+            text-decoration: underline;
+        }
+        
+        .payment-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .payment-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--primary-red);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .payment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(211, 47, 47, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .payment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .payment-card:hover::before {
+            opacity: 1;
+        }
+        
+        .payment-card h3 {
+            color: var(--primary-red);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 1px solid var(--medium-gray);
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .payment-card h3 i {
+            font-size: 1.8rem;
+        }
+        
+        .payment-info {
+            margin-bottom: 20px;
+        }
+        
+        .payment-info p {
+            margin: 10px 0;
+        }
+        
+        .account-number {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary-red);
+            background: linear-gradient(45deg, rgba(211, 47, 47, 0.1), transparent);
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 15px 0;
+            border: 1px solid rgba(211, 47, 47, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .account-number::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .account-number:hover::before {
+            left: 100%;
+        }
+        
+        .copy-btn {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .copy-btn:hover {
+            background: var(--dark-red);
+        }
+        
+        .qris-section {
+            margin: 50px 0;
+            text-align: center;
+        }
+        
+        .qris-section h2 {
+            color: var(--primary-red);
+            margin-bottom: 30px;
+            font-size: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .qris-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--primary-red);
+            border-radius: 3px;
+        }
+        
+        .qris-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .qris-item {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            max-width: 320px;
+            transition: transform 0.3s ease;
+            border: 1px solid var(--medium-gray);
+        }
+        
+        .qris-item:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .qris-item img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid var(--primary-red);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .qris-item p {
+            font-weight: bold;
+            color: var(--primary-red);
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        
+        .fee-section {
+            margin: 50px 0;
+        }
+        
+        .fee-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-red);
+            font-size: 2rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .fee-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--primary-red);
+            border-radius: 3px;
+        }
+        
+        .fee-tables {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .fee-table {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .fee-table:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .fee-table h3 {
+            background: linear-gradient(to right, var(--dark-red), var(--primary-red));
+            padding: 20px;
+            text-align: center;
+            margin: 0;
+            font-size: 1.4rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .fee-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .fee-table th, .fee-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        .fee-table th {
+            background-color: rgba(211, 47, 47, 0.1);
+            color: var(--primary-red);
+        }
+        
+        .fee-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .fee-table tr:hover {
+            background-color: rgba(211, 47, 47, 0.05);
+        }
+        
+        footer {
+            background: linear-gradient(to right, var(--dark-red), var(--primary-red));
+            padding: 25px 0;
+            text-align: center;
+            margin-top: 60px;
+            color: white;
+        }
+        
+        footer p {
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .payment-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .fee-tables {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .qris-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        /* Animasi untuk elemen yang muncul saat scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Toast notification */
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: var(--primary-red);
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="toast" id="toast">Nomor berhasil disalin!</div>
+    
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-money-bill-wave"></i> Payment - All Stok/Testi Barz Murphy</h1>
+            <p>Pilih metode pembayaran yang paling nyaman untuk Anda</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="whatsapp-channel fade-in">
+            <p>Info lebih lanjut, kunjungi saluran WhatsApp kami:</p>
+            <a href="https://whatsapp.com/channel/0029Vb78Id2CxoAtGTcABB1v" target="_blank">
+                <i class="fab fa-whatsapp"></i> https://whatsapp.com/channel/0029Vb78Id2CxoAtGTcABB1v
+            </a>
+        </div>
+        
+        <section class="payment-section">
+            <div class="payment-card fade-in">
+                <h3><i class="fas fa-wallet"></i> DANA</h3>
+                <div class="payment-info">
+                    <p class="account-number">083151041752 <button class="copy-btn" onclick="copyToClipboard('083151041752', 'DANA')"><i class="fas fa-copy"></i> Salin</button></p>
+                    <p>A/N: M.AKBAR</p>
+                </div>
+            </div>
+            
+            <div class="payment-card fade-in">
+                <h3><i class="fab fa-google-wallet"></i> GOPAY</h3>
+                <div class="payment-info">
+                    <p class="account-number">083151041752 <button class="copy-btn" onclick="copyToClipboard('083151041752', 'GOPAY')"><i class="fas fa-copy"></i> Salin</button></p>
+                    <p>A/N: WARTI</p>
+                </div>
+            </div>
+            
+            <div class="payment-card fade-in">
+                <h3><i class="fas fa-mobile-alt"></i> OVO</h3>
+                <div class="payment-info">
+                    <p class="account-number">083151041752 <button class="copy-btn" onclick="copyToClipboard('083151041752', 'OVO')"><i class="fas fa-copy"></i> Salin</button></p>
+                    <p>A/N: WARTI</p>
+                </div>
+            </div>
+            
+            <div class="payment-card fade-in">
+                <h3><i class="fas fa-university"></i> SEABANK</h3>
+                <div class="payment-info">
+                    <p class="account-number">901824018945 <button class="copy-btn" onclick="copyToClipboard('901824018945', 'SEABANK')"><i class="fas fa-copy"></i> Salin</button></p>
+                    <p>A/N: M.AKBAR FAJRI</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="qris-section">
+            <h2><i class="fas fa-qrcode"></i> QRIS Payment</h2>
+            <div class="qris-container">
+                <div class="qris-item fade-in">
+                    <img src="https://www.dropbox.com/scl/fi/u14c83jyq17s8mqwndn40/QRIS.png?rlkey=014uejgq3u2g55rwhii30vf2a&st=ldz5bglk&dl=1" alt="QRIS">
+                    <p>QRIS</p>
+                </div>
+                <div class="qris-item fade-in">
+                    <img src="https://www.dropbox.com/scl/fi/jdymzi7qt2pwfxoo8n13s/qr_ID1024350650213_05.06.25_174914101_1749141016967.jpeg?rlkey=csaclle8ue6wajjedmcfiulor&st=80lkfxaq&dl=1" alt="QR DANA">
+                    <p>ONLY DANA</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="fee-section">
+            <h2><i class="fas fa-list-alt"></i> List Fee</h2>
+            <div class="fee-tables">
+                <div class="fee-table fade-in">
+                    <h3><i class="fas fa-exchange-alt"></i> FEE REKBER</h3>
+                    <table>
+                        <tr>
+                            <th>Nominal</th>
+                            <th>Fee</th>
+                        </tr>
+                        <tr>
+                            <td>0 - 50</td>
+                            <td>3K</td>
+                        </tr>
+                        <tr>
+                            <td>51 - 99</td>
+                            <td>5K</td>
+                        </tr>
+                        <tr>
+                            <td>100 - 199</td>
+                            <td>10K</td>
+                        </tr>
+                        <tr>
+                            <td>200 - 399</td>
+                            <td>15K</td>
+                        </tr>
+                        <tr>
+                            <td>400 - 499</td>
+                            <td>20K</td>
+                        </tr>
+                        <tr>
+                            <td>500 - 599</td>
+                            <td>30K</td>
+                        </tr>
+                        <tr>
+                            <td>600 - 799</td>
+                            <td>40K</td>
+                        </tr>
+                        <tr>
+                            <td>800 - 999</td>
+                            <td>50K</td>
+                        </tr>
+                        <tr>
+                            <td>1JT - 1.5JT</td>
+                            <td>60K</td>
+                        </tr>
+                        <tr>
+                            <td>Seterusnya</td>
+                            <td>100K</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="fee-table fade-in">
+                    <h3><i class="fas fa-clock"></i> FEE DELAY</h3>
+                    <table>
+                        <tr>
+                            <th>Waktu</th>
+                            <th>Fee</th>
+                        </tr>
+                        <tr>
+                            <td>1 - 7H</td>
+                            <td>5K</td>
+                        </tr>
+                        <tr>
+                            <td>8 - 15H</td>
+                            <td>10K</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="fee-table fade-in">
+                    <h3><i class="fas fa-sync-alt"></i> FEE CV (CONVERT)</h3>
+                    <table>
+                        <tr>
+                            <th>Nominal</th>
+                            <th>Fee</th>
+                        </tr>
+                        <tr>
+                            <td>0 - 100</td>
+                            <td>3K</td>
+                        </tr>
+                        <tr>
+                            <td>101 - 200</td>
+                            <td>5K</td>
+                        </tr>
+                        <tr>
+                            <td>201 - 500</td>
+                            <td>10K</td>
+                        </tr>
+                        <tr>
+                            <td>501 - 1JT</td>
+                            <td>20K</td>
+                        </tr>
+                        <tr>
+                            <td>1JT - Seterusnya</td>
+                            <td>50K</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Payment - All Stok/Testi Barz Murphy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Fungsi untuk copy nomor rekening
+        function copyToClipboard(text, method) {
+            navigator.clipboard.writeText(text).then(function() {
+                showToast(`Nomor ${method} berhasil disalin: ${text}`);
+            }, function(err) {
+                console.error('Gagal menyalin teks: ', err);
+                showToast('Gagal menyalin nomor');
+            });
+        }
+        
+        // Fungsi untuk menampilkan toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(function() {
+                toast.clas
